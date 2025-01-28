@@ -3,45 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Token</title>
-  <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+  <title>Token Launchpad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Create Your Token</h1>
-  <form id="createTokenForm">
-    <input type="text" id="name" placeholder="Token Name" required><br>
-    <input type="text" id="symbol" placeholder="Token Symbol" required><br>
-    <input type="number" id="supply" placeholder="Total Supply" required><br>
-    <button type="submit">Create Token</button>
-  </form>
-
+  <div class="container">
+    <h1>Token Launchpad</h1>
+    <form id="tokenForm">
+      <label>Token Name:</label>
+      <input type="text" id="tokenName" required><br>
+      <label>Symbol:</label>
+      <input type="text" id="tokenSymbol" required><br>
+      <label>Initial Supply:</label>
+      <input type="number" id="tokenSupply" required><br>
+      <button type="button" onclick="createToken()">Create Token</button>
+    </form>
+  </div>
   <script>
-    const contractAddress = "YOUR_CONTRACT_ADDRESS"; // استبدل هذا بعنوان العقد
-    const contractABI = YOUR_ABI; // استبدل هذا بالـ ABI الخاص بالعقد
-
-    document.getElementById('createTokenForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const symbol = document.getElementById('symbol').value;
-      const supply = document.getElementById('supply').value;
-
-      if (window.ethereum) {
-        const web3 = new Web3(window.ethereum);
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const accounts = await web3.eth.getAccounts();
-        const account = accounts[0];
-
-        const contract = new web3.eth.Contract(contractABI, contractAddress);
-        await contract.methods.createToken(name, symbol, supply).send({
-          from: account,
-          value: web3.utils.toWei('0.25', 'ether'),
-        });
-
-        alert('Token Created Successfully!');
-      } else {
-        alert('MetaMask is required');
-      }
-    });
+    function createToken() {
+      alert('Token creation triggered');
+      // Call smart contract functions here.
+    }
   </script>
 </body>
 </html>
